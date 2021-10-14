@@ -1,0 +1,6 @@
+{
+	"appId": "io.github.edsuns",
+	"appName": "Vite App",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

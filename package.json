@@ -1,0 +1,30 @@
+{
+  "name": "f7-capacitor-vite-vue-ts",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "cross-env NODE_ENV=production vite build",
+    "build-capacitor-ios": "cross-env NODE_ENV=production vite build && npx cap copy ios",
+    "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
+    "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/assets/fonts/ && cpy ./node_modules/material-icons/iconfont/*.* ./src/assets/fonts/"
+  },
+  "dependencies": {
+    "@capacitor/android": "^3.2.5",
+    "@capacitor/app": "^1.0.4",
+    "@capacitor/core": "^3.2.5",
+    "framework7": "^6.3.5",
+    "framework7-icons": "^5.0.5",
+    "framework7-vue": "^6.3.5",
+    "material-icons": "^1.9.1",
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^3.2.5",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "cpy-cli": "^3.1.1",
+    "cross-env": "^7.0.3",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
+  }
+}
