@@ -1,1 +1,10 @@
 /* Your app custom styles here */
+
+@media not all and (hover: none) and (pointer: coarse) {
+    /* https://ferie.medium.com/detect-a-touch-device-with-only-css-9f8e30fa1134 */
+    /* Non-touch devices */
+    html {
+        margin: auto;
+        max-width: 100vh;
+    }
+}

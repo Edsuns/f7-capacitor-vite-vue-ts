@@ -95,6 +95,7 @@
 
   import { getDevice }  from 'framework7/lite-bundle';
   import capacitorApp from './utils/capacitor-app';
+  import Theme from './utils/theme'
   import routes from './router/routes';
   import store from './store/store';
 
@@ -104,7 +105,7 @@
       // Framework7 Parameters
       const f7params = {
         name: 'Vite App', // App name
-        theme: 'auto', // Automatic theme detection
+        theme: 'ios', // Automatic theme detection
 
         id: 'io.github.edsuns', // App bundle ID
         // App store
@@ -134,7 +135,7 @@
       }
       onMounted(() => {
         f7ready(() => {
-
+          Theme.init();
           // Init capacitor APIs (see capacitor-app.js)
           if (device.capacitor) {
             capacitorApp.init(f7);

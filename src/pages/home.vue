@@ -24,6 +24,23 @@
       <f7-list-item link="/form/" title="Form"></f7-list-item>
     </f7-list>
 
+    <f7-block-title>Layout Themes</f7-block-title>
+    <f7-block strong>
+      <p>Framework7 comes with 2 main layout themes: Light (default) and Dark:</p>
+      <f7-row>
+        <f7-col
+          width="50"
+          class="bg-color-white theme-picker"
+          @click="setLayoutTheme('light')"
+        >
+          <f7-checkbox v-if="theme === 'light'" checked disabled />
+        </f7-col>
+        <f7-col width="50" class="bg-color-black theme-picker" @click="setLayoutTheme('dark')">
+          <f7-checkbox v-if="theme === 'dark'" checked disabled />
+        </f7-col>
+      </f7-row>
+    </f7-block>
+
     <f7-block-title>Modals</f7-block-title>
     <f7-block strong>
       <f7-row>
@@ -64,3 +81,36 @@
     </f7-list>
   </f7-page>
 </template>
+<style>
+.theme-picker {
+    cursor: pointer;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    position: relative;
+}
+.theme-picker .checkbox {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    opacity: 1 !important;
+}
+</style>
+<script>
+import Theme from '../utils/theme';
+export default {
+  data () {
+    return {
+      theme: Theme.isDark() ? 'dark' : 'light'
+    }
+  },
+  methods: {
+      setLayoutTheme(theme) {
+        Theme.setTheme(theme === 'dark');
+        this.theme = theme;
+      }
+  }
+}
+</script>
