@@ -94,7 +94,7 @@
   import { f7, f7ready } from 'framework7-vue';
 
   import { getDevice }  from 'framework7/lite-bundle';
-  import capacitorApp from './capacitor-app';
+  import capacitorApp from './utils/capacitor-app';
   import routes from './router/routes';
   import store from './store/store';
 
