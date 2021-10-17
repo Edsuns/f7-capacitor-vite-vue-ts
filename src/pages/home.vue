@@ -45,14 +45,14 @@
     <f7-block-title>Platform Themes</f7-block-title>
     <f7-block strong>
       <f7-row>
-        <f7-col width="50" class="theme-picker" @click="locationReplace('./index.html?theme=ios')">
+        <f7-col width="50" class="theme-picker" @click="setPlatformTheme('ios')">
           <f7-checkbox v-if="platform === 'ios'" checked disabled />
           <f7-col class="platform">
             <i class="f7-icons">logo_apple</i>
             <i class="f7-icons">logo_ios</i>
           </f7-col>
         </f7-col>
-        <f7-col width="50" class="theme-picker" @click="locationReplace('./index.html?theme=md')">
+        <f7-col width="50" class="theme-picker" @click="setPlatformTheme('md')">
           <f7-checkbox v-if="platform === 'md'" checked disabled />
           <f7-col class="platform">
             <i class="f7-icons">logo_android</i>
@@ -117,7 +117,7 @@
 }
 </style>
 <script>
-import { getDevice } from 'framework7/lite-bundle';
+import { getDevice } from 'framework7';
 import Theme from '../utils/theme';
 export default {
   data() {
@@ -127,19 +127,19 @@ export default {
     }
   },
   mounted() {
-    let theme = getDevice().ios ? 'ios' : 'md';
-    if (document.location.search.indexOf('theme=') >= 0) {
-      theme = document.location.search.split('theme=')[1].split('&')[0];
+    let theme = Theme.extractThemeSearch();
+    if (theme === 'auto') {
+      theme = getDevice().ios ? 'ios' : 'md';
     }
-    this.platform = theme;
+    this.platform = theme === 'aurora' ? 'md' : theme;
   },
   methods: {
     setLayoutTheme(theme) {
       Theme.setDark(theme === 'dark');
       this.theme = theme;
     },
-    locationReplace(url) {
-      location.replace(url);
+    setPlatformTheme(theme) {
+      Theme.replaceLocation(theme);
     }
   }
 }

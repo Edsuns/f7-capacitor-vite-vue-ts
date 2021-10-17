@@ -8,6 +8,8 @@ interface Theme {
     hasDarkColorScheme(): boolean
     setSystemBar(dark: boolean, material: boolean): void
     setDark(dark: boolean): void
+    extractThemeSearch(): 'auto' | 'ios' | 'md' | 'aurora'
+    replaceLocation(theme: 'ios' | 'md' | 'aurora'): void
 }
 
 const theme: Theme = {
@@ -51,6 +53,18 @@ const theme: Theme = {
         this.setSystemBar(dark, md);
         // Apply change to f7
         f7.darkTheme = dark;
+    },
+    extractThemeSearch(): 'auto' | 'ios' | 'md' | 'aurora' {
+        if (document.location.search.indexOf('theme=') >= 0) {
+            const theme = document.location.search.split('theme=')[1].split('&')[0];
+            if (theme === 'auto' || theme === 'ios' || theme === 'md' || theme === 'aurora') {
+                return theme;
+            }
+        }
+        return 'auto';
+    },
+    replaceLocation(theme: 'ios' | 'md' | 'aurora') {
+        window.location.replace('index.html?theme=' + theme);
     }
 }
 

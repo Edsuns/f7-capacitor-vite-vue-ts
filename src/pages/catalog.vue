@@ -14,20 +14,21 @@
     </f7-block>
   </f7-page>
 </template>
-<script>
+<script lang="ts">
   import { useStore } from 'framework7-vue';
-  import store from '../store/store'
+  import store, { Product } from '../store/store'
 
   export default {
     setup() {
       const products = useStore('products');
 
       const addProduct = () => {
-        store.dispatch('addProduct', {
+        const product: Product = {
           id: '4',
           title: 'Apple iPhone 12',
           description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-        });
+        }
+        store.dispatch('addProduct', product);
       }
 
       return {

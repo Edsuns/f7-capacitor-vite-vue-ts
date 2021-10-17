@@ -1,7 +1,21 @@
 
-import { createStore } from 'framework7/lite';
+import { createStore, StoreParameters } from 'framework7/lite';
 
-const store = createStore({
+export interface Product {
+  id: string
+  title: string
+  description: string
+}
+
+interface ProductStoreState {
+  products: Array<Product>
+}
+
+interface ProductStoreParameters extends StoreParameters {
+  state: ProductStoreState
+}
+
+const params: ProductStoreParameters = {
   state: {
     products: [
       {
@@ -22,14 +36,16 @@ const store = createStore({
     ]
   },
   getters: {
-    products({ state }) {
+    products({ state }: ProductStoreParameters) {
       return state.products;
     }
   },
   actions: {
-    addProduct({ state }, product) {
+    addProduct({ state }: ProductStoreParameters, product: Product) {
       state.products = [...state.products, product];
     },
   },
-})
+}
+const store = createStore(params);
+
 export default store;
