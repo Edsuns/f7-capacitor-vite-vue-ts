@@ -100,12 +100,17 @@
   import store from './store/store';
 
   export default {
-    setup() {
+      setup() {
+      let theme = 'auto';
+      if (document.location.search.indexOf('theme=') >= 0) {
+        theme = document.location.search.split('theme=')[1].split('&')[0];
+      }
       const device = getDevice();
       // Framework7 Parameters
       const f7params = {
         name: 'Vite App', // App name
-        theme: 'ios', // Automatic theme detection
+        theme,
+        autoDarkTheme: false,// Disable and use utils/theme instead
 
         id: 'io.github.edsuns', // App bundle ID
         // App store
