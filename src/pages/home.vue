@@ -118,6 +118,7 @@
 </style>
 <script>
 import { getDevice } from 'framework7';
+import { f7 } from 'framework7-vue';
 import Theme from '../utils/theme';
 export default {
   data() {
@@ -139,7 +140,13 @@ export default {
       this.theme = theme;
     },
     setPlatformTheme(theme) {
-      Theme.replaceLocation(theme);
+      if (theme !== this.platform) {
+        f7.dialog.confirm(
+          'Switching platform theme will refresh the page.',
+          'Confirm to Refresh',
+          () => Theme.replaceLocation(theme)
+        );
+      }
     }
   }
 }
