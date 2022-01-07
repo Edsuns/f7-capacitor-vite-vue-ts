@@ -14,7 +14,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 1. Clone this repository.
 
-2. Run `npm run install` from the project root.
+2. Run `npm install` from the project root.
 
 3. Run `npm run dev` to deploy the project for development.
 
